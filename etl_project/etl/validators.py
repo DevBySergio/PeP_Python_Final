@@ -1,34 +1,34 @@
-import re
+"""
+MÓDULO: etl.validators
 
-def validate_dni(dni: str) -> bool:
-    if not dni:
-        return False
+RESPONSABILIDAD:
+- Validar campos críticos del negocio.
 
-    dni = dni.strip().upper()
-    pattern = r'^\d{8}[A-Z]$'
+FUNCIONES:
 
-    if not re.match(pattern, dni):
-        return False
+1. validate_dni(dni)
+   - Formato: 8 números + letra
+   - Validación real de letra
 
-    letters = "TRWAGMYFPDXBNJZSQVHLCKE"
-    number = int(dni[:-1])
-    letter = dni[-1]
+2. validate_phone(phone)
+   - Solo dígitos
+   - Longitud mínima (ej: 9)
 
-    return letters[number % 23] == letter
+3. validate_email(email)
+   - Regex estándar de email
 
+4. generate_flag_pair(is_valid)
+   - Convierte booleano en:
+        ok → "Y"/"N"
+        ko → "N"/"Y"
 
-def validate_phone(phone: str) -> bool:
-    if not phone:
-        return False
+VARIABLES:
+- DNI_PATTERN
+- EMAIL_PATTERN
 
-    phone = re.sub(r'\D', '', phone)
+INTERACCIÓN:
+- transformer.py
 
-    return len(phone) >= 9
-
-
-def validate_email(email: str) -> bool:
-    if not email:
-        return False
-
-    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-    return re.match(pattern, email) is not None
+OUTPUT:
+- Booleanos + flags OK/KO
+"""

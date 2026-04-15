@@ -1,9 +1,26 @@
-import hashlib
-import os
+"""
+MÓDULO: etl.anonymization
 
-SALT = os.getenv("HASH_SALT")
+RESPONSABILIDAD:
+- Proteger datos sensibles mediante hashing.
 
-def hash_value(value: str) -> str:
-    if not value:
-        return None
-    return hashlib.sha256((SALT + value).encode()).hexdigest()
+FUNCIONES:
+
+1. hash_value(value)
+   - Aplica SHA-256 con SALT
+   - Retorna hash hexadecimal
+
+VARIABLES:
+- HASH_SALT (desde config/env)
+
+CAMPOS A ANONIMIZAR:
+- DNI → dni_hash
+- numero_tarjeta → numero_tarjeta_hash
+- CVV → cvv_hash
+
+INTERACCIÓN:
+- transformer.py
+
+IMPORTANTE:
+- Nunca almacenar datos sensibles en claro
+"""

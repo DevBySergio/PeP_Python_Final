@@ -1,27 +1,22 @@
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-from datetime import datetime
-import sys
+"""
+DAG de Apache Airflow encargado de orquestar el pipeline ETL.
 
-sys.path.append('/opt/airflow')
+RESPONSABILIDAD:
+- Definir el flujo de ejecución del pipeline.
+- Programar la ejecución automática (cron).
+- Invocar las funciones principales del ETL.
 
-from etl.pipeline import run_pipeline
+ELEMENTOS CLAVE:
+- dag_id: nombre del pipeline (etl_pipeline)
+- schedule_interval: ejecución diaria a las 03:00
+- default_args: configuración base (owner, retries, etc.)
 
-default_args = {
-    'owner': 'airflow',
-    'start_date': datetime(2024, 1, 1),
-}
+INTERACCIÓN:
+- Importa y ejecuta la función principal desde etl.pipeline.run_pipeline()
 
-with DAG(
-    'etl_pipeline',
-    default_args=default_args,
-    schedule_interval='0 3 * * *',  # 03:00 AM
-    catchup=False
-) as dag:
-
-    run_etl = PythonOperator(
-        task_id='run_etl',
-        python_callable=run_pipeline
-    )
-
-    run_etl
+MEJORAS FUTURAS:
+- Separar en múltiples tareas:
+  - extract_task
+  - transform_task
+  - load_task
+"""

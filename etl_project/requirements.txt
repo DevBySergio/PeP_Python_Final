@@ -1,3 +1,10 @@
+# Dependencias del proyecto
+
+# pandas → procesamiento de datos
+# sqlalchemy → conexión DB
+# psycopg2 → driver PostgreSQL
+# python-dotenv → variables entorno
+
 pandas
 sqlalchemy
 psycopg2-binary
