@@ -1,0 +1,85 @@
+[2026-04-17T13:53:30.637+0000] {processor.py:161} INFO - Started process (PID=169) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:53:30.640+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T13:53:30.641+0000] {logging_mixin.py:188} INFO - [2026-04-17T13:53:30.640+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:53:30.675+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:53:30.723+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.087 seconds
+[2026-04-17T13:54:00.953+0000] {processor.py:161} INFO - Started process (PID=176) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:54:00.954+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T13:54:00.955+0000] {logging_mixin.py:188} INFO - [2026-04-17T13:54:00.955+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:54:00.957+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:54:00.969+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.018 seconds
+[2026-04-17T13:54:31.198+0000] {processor.py:161} INFO - Started process (PID=181) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:54:31.199+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T13:54:31.199+0000] {logging_mixin.py:188} INFO - [2026-04-17T13:54:31.199+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:54:31.201+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:54:31.210+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.014 seconds
+[2026-04-17T13:55:01.443+0000] {processor.py:161} INFO - Started process (PID=186) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:55:01.443+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T13:55:01.444+0000] {logging_mixin.py:188} INFO - [2026-04-17T13:55:01.444+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:55:01.446+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:55:01.457+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.017 seconds
+[2026-04-17T13:55:31.676+0000] {processor.py:161} INFO - Started process (PID=191) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:55:31.676+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T13:55:31.677+0000] {logging_mixin.py:188} INFO - [2026-04-17T13:55:31.677+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:55:31.679+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:55:31.688+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.014 seconds
+[2026-04-17T13:56:01.923+0000] {processor.py:161} INFO - Started process (PID=196) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:56:01.923+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T13:56:01.924+0000] {logging_mixin.py:188} INFO - [2026-04-17T13:56:01.923+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:56:01.925+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T13:56:01.933+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.013 seconds
+[2026-04-17T14:46:54.893+0000] {processor.py:161} INFO - Started process (PID=171) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:46:54.894+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:46:54.895+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:46:54.895+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:46:54.899+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:46:54.905+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.013 seconds
+[2026-04-17T14:47:25.146+0000] {processor.py:161} INFO - Started process (PID=176) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:47:25.147+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:47:25.147+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:47:25.147+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:47:25.151+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:47:25.164+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.020 seconds
+[2026-04-17T14:47:55.424+0000] {processor.py:161} INFO - Started process (PID=181) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:47:55.425+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:47:55.426+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:47:55.425+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:47:55.428+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:47:55.439+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.018 seconds
+[2026-04-17T14:48:25.688+0000] {processor.py:161} INFO - Started process (PID=186) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:48:25.689+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:48:25.690+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:48:25.690+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:48:25.692+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:48:25.703+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.017 seconds
+[2026-04-17T14:48:55.925+0000] {processor.py:161} INFO - Started process (PID=191) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:48:55.926+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:48:55.926+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:48:55.926+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:48:55.929+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:48:55.939+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.016 seconds
+[2026-04-17T14:49:26.182+0000] {processor.py:161} INFO - Started process (PID=196) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:49:26.183+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:49:26.184+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:49:26.184+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:49:26.186+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:49:26.197+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.017 seconds
+[2026-04-17T14:49:56.433+0000] {processor.py:161} INFO - Started process (PID=201) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:49:56.434+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:49:56.435+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:49:56.435+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:49:56.437+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:49:56.448+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.017 seconds
+[2026-04-17T14:50:26.689+0000] {processor.py:161} INFO - Started process (PID=206) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:50:26.689+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:50:26.690+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:50:26.690+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:50:26.692+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:50:26.703+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.017 seconds
+[2026-04-17T14:50:56.962+0000] {processor.py:161} INFO - Started process (PID=211) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:50:56.963+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:50:56.964+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:50:56.964+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:50:56.967+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:50:56.979+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.021 seconds
+[2026-04-17T14:51:27.267+0000] {processor.py:161} INFO - Started process (PID=216) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:51:27.268+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:51:27.269+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:51:27.268+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:51:27.271+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:51:27.280+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.016 seconds
+[2026-04-17T14:51:57.589+0000] {processor.py:161} INFO - Started process (PID=221) to work on /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:51:57.589+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_pipeline.py for tasks to queue
+[2026-04-17T14:51:57.590+0000] {logging_mixin.py:188} INFO - [2026-04-17T14:51:57.590+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:51:57.591+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/etl_pipeline.py
+[2026-04-17T14:51:57.600+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_pipeline.py took 0.013 seconds

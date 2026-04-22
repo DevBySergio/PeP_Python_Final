@@ -1,4 +1,6 @@
 """
+Asignado: Juan
+
 MÓDULO: etl.extractor
 
 RESPONSABILIDAD:

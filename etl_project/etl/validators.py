@@ -1,4 +1,6 @@
 """
+Asignado: Alberto
+
 MÓDULO: etl.validators
 
 RESPONSABILIDAD:

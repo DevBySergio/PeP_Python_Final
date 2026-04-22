@@ -1,0 +1,36 @@
+{
+  "version": "1.2.0",
+  "columns": {
+    "todo": {
+      "id": "todo",
+      "title": "📋 To Do",
+      "color": "var(--vscode-charts-blue)",
+      "position": 0
+    },
+    "in-progress": {
+      "id": "in-progress",
+      "title": "⏳ In Progress",
+      "color": "var(--vscode-charts-yellow)",
+      "position": 1
+    },
+    "done": {
+      "id": "done",
+      "title": "✅ Done",
+      "color": "var(--vscode-charts-green)",
+      "position": 2
+    }
+  },
+  "tasks": {},
+  "labels": {
+    "bug": {
+      "id": "bug",
+      "name": "Bug",
+      "color": "#f85149"
+    },
+    "feat": {
+      "id": "feat",
+      "name": "Feature",
+      "color": "#a371f7"
+    }
+  }
+}

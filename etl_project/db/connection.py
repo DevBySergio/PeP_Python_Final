@@ -1,4 +1,6 @@
 """
+Asignado: Sergio
+
 MÓDULO: db.connection
 
 RESPONSABILIDAD:

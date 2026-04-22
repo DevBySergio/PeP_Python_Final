@@ -142,8 +142,8 @@ docker-compose up --build
 Una vez levantado el entorno:
 
 - URL: http://localhost:8080
-- Usuario: `airflow`
-- Contraseña: `airflow`
+- Usuario: `admin`
+- Contraseña: `admin`
 
 ---
 
