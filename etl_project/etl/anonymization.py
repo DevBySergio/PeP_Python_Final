@@ -24,3 +24,11 @@ INTERACCIÓN:
 IMPORTANTE:
 - Nunca almacenar datos sensibles en claro
 """
+import hashlib
+from etl.config import HASH_SALT
+
+def hash_value(value: str) -> str:
+    if value is None:
+        value = ""
+    raw = f"{HASH_SALT}{value}".encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
