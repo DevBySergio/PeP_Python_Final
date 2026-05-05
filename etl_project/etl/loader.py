@@ -28,3 +28,15 @@ CONSIDERACIONES:
 - Evitar duplicados (posible mejora futura)
 - Manejo de errores de inserción
 """
+import os
+import pandas as pd
+
+def load_clientes(df: pd.DataFrame, engine) -> None:
+    df.to_sql("clientes", engine, if_exists="append", index=False)
+    
+def load_tarjetas(df: pd.DataFrame, engine) -> None:
+    df.to_sql("tarjetas", engine, if_exists="append", index=False)
+    
+def save_output_csv(df: pd.DataFrame, output_path: str, filename: str) -> None:
+    os.makedirs(output_path, exist_ok=True)
+    df.to_csv(os.path.join(output_path, filename), sep=";", index=False)
