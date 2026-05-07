@@ -1,0 +1,4 @@
+nombre;correo;telefono;dni_hash;dni_ok;dni_ko;telefono_ok;telefono_ko;correo_ok;correo_ko
+Ana Lopez;ana.lopez@example.com;612345678;888de2c61144cf4d7c599fe14aeb0f66167cab0da901c66c70168bbc1807521e;Y;N;Y;N;Y;N
+Luis Garcia;luis.garcia@example.com;699887766;7511c8fccd4ef101f0eed7ebd99a1cc3326c04a57cbfe5da2bed5e11e2305d88;Y;N;Y;N;Y;N
+Marta Perez;marta.perez@example.com;611223344;e358d8195d9513ba506ddd061e793b2778030603464cb6205e84ef17b3d50692;Y;N;Y;N;Y;N

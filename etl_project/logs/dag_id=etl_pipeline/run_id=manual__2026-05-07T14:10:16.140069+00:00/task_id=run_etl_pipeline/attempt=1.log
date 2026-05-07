@@ -1,14 +1,14 @@
-[2026-05-07T14:09:20.770+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.run_etl_pipeline scheduled__2026-05-06T03:00:00+00:00 [queued]>
-[2026-05-07T14:09:20.774+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.run_etl_pipeline scheduled__2026-05-06T03:00:00+00:00 [queued]>
-[2026-05-07T14:09:20.774+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
-[2026-05-07T14:09:20.779+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_etl_pipeline> on 2026-05-06 03:00:00+00:00
-[2026-05-07T14:09:20.780+0000] {standard_task_runner.py:60} INFO - Started process 194 to run task
-[2026-05-07T14:09:20.782+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'run_etl_pipeline', 'scheduled__2026-05-06T03:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/etl_pipeline.py', '--cfg-path', '/tmp/tmpurc1ijbg']
-[2026-05-07T14:09:20.783+0000] {standard_task_runner.py:88} INFO - Job 3: Subtask run_etl_pipeline
-[2026-05-07T14:09:20.802+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline.run_etl_pipeline scheduled__2026-05-06T03:00:00+00:00 [running]> on host cc6bd80a2983
-[2026-05-07T14:09:20.921+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='run_etl_pipeline' AIRFLOW_CTX_EXECUTION_DATE='2026-05-06T03:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-06T03:00:00+00:00'
-[2026-05-07T14:09:20.921+0000] {pipeline.py:61} INFO - Iniciando pipeline ETL
-[2026-05-07T14:09:20.944+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+[2026-05-07T14:10:17.342+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.run_etl_pipeline manual__2026-05-07T14:10:16.140069+00:00 [queued]>
+[2026-05-07T14:10:17.345+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.run_etl_pipeline manual__2026-05-07T14:10:16.140069+00:00 [queued]>
+[2026-05-07T14:10:17.345+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-05-07T14:10:17.349+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_etl_pipeline> on 2026-05-07 14:10:16.140069+00:00
+[2026-05-07T14:10:17.351+0000] {standard_task_runner.py:60} INFO - Started process 209 to run task
+[2026-05-07T14:10:17.353+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'run_etl_pipeline', 'manual__2026-05-07T14:10:16.140069+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/etl_pipeline.py', '--cfg-path', '/tmp/tmpkki0hlqz']
+[2026-05-07T14:10:17.353+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask run_etl_pipeline
+[2026-05-07T14:10:17.370+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline.run_etl_pipeline manual__2026-05-07T14:10:16.140069+00:00 [running]> on host cc6bd80a2983
+[2026-05-07T14:10:17.459+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='run_etl_pipeline' AIRFLOW_CTX_EXECUTION_DATE='2026-05-07T14:10:16.140069+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-07T14:10:16.140069+00:00'
+[2026-05-07T14:10:17.459+0000] {pipeline.py:61} INFO - Iniciando pipeline ETL
+[2026-05-07T14:10:17.475+0000] {taskinstance.py:2698} ERROR - Task failed with exception
 Traceback (most recent call last):
   File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1890, in _execute_context
     self.dialect.do_executemany(
@@ -71,12 +71,12 @@ DETAIL:  Failing row contains (null, Juan Perez, juan.perez@mail.com, 60012, 7c3
 [SQL: INSERT INTO clientes (id, nombre, correo, telefono, dni_hash, dni_ok, dni_ko, telefono_ok, telefono_ko, correo_ok, correo_ko) VALUES (%(id)s, %(nombre)s, %(correo)s, %(telefono)s, %(dni_hash)s, %(dni_ok)s, %(dni_ko)s, %(telefono_ok)s, %(telefono_ko)s, %(correo_ok)s, %(correo_ko)s)]
 [parameters: ({'id': None, 'nombre': 'Juan Perez', 'correo': 'juan.perez@mail.com', 'telefono': '60012', 'dni_hash': '7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0', 'dni_ok': 'N', 'dni_ko': 'Y', 'telefono_ok': 'N', 'telefono_ko': 'Y', 'correo_ok': 'Y', 'correo_ko': 'N'}, {'id': None, 'nombre': 'Lucia Martin', 'correo': 'lucia.mail.com', 'telefono': '34622334455', 'dni_hash': '4cd77ee263185c9464ed631fc6a6c448a846178793344e04535ff42d7025710c', 'dni_ok': 'Y', 'dni_ko': 'N', 'telefono_ok': 'Y', 'telefono_ko': 'N', 'correo_ok': 'N', 'correo_ko': 'Y'}, {'id': None, 'nombre': 'Pedro Gomez', 'correo': None, 'telefono': '', 'dni_hash': 'a3bc66384897df1892eb85705c9020e2ef34dd576af8e1f09dabae2a2402bc8c', 'dni_ok': 'N', 'dni_ko': 'Y', 'telefono_ok': 'N', 'telefono_ko': 'Y', 'correo_ok': 'N', 'correo_ko': 'Y'}, {'id': None, 'nombre': None, 'correo': 'sin_nombre@example.com', 'telefono': '677889900', 'dni_hash': '0815c477565421a0dd857a1dbfcaaee25bf07c229953df85fd177e22af21ab8d', 'dni_ok': 'Y', 'dni_ko': 'N', 'telefono_ok': 'Y', 'telefono_ko': 'N', 'correo_ok': 'Y', 'correo_ko': 'N'})]
 (Background on this error at: https://sqlalche.me/e/14/gkpj)
-[2026-05-07T14:09:20.950+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_pipeline, task_id=run_etl_pipeline, execution_date=20260506T030000, start_date=20260507T140920, end_date=20260507T140920
-[2026-05-07T14:09:20.955+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 3 for task run_etl_pipeline ((psycopg2.errors.NotNullViolation) null value in column "id" of relation "clientes" violates not-null constraint
+[2026-05-07T14:10:17.480+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_pipeline, task_id=run_etl_pipeline, execution_date=20260507T141016, start_date=20260507T141017, end_date=20260507T141017
+[2026-05-07T14:10:17.483+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 4 for task run_etl_pipeline ((psycopg2.errors.NotNullViolation) null value in column "id" of relation "clientes" violates not-null constraint
 DETAIL:  Failing row contains (null, Juan Perez, juan.perez@mail.com, 60012, 7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0, N, Y, N, Y, Y, N).
 
 [SQL: INSERT INTO clientes (id, nombre, correo, telefono, dni_hash, dni_ok, dni_ko, telefono_ok, telefono_ko, correo_ok, correo_ko) VALUES (%(id)s, %(nombre)s, %(correo)s, %(telefono)s, %(dni_hash)s, %(dni_ok)s, %(dni_ko)s, %(telefono_ok)s, %(telefono_ko)s, %(correo_ok)s, %(correo_ko)s)]
 [parameters: ({'id': None, 'nombre': 'Juan Perez', 'correo': 'juan.perez@mail.com', 'telefono': '60012', 'dni_hash': '7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0', 'dni_ok': 'N', 'dni_ko': 'Y', 'telefono_ok': 'N', 'telefono_ko': 'Y', 'correo_ok': 'Y', 'correo_ko': 'N'}, {'id': None, 'nombre': 'Lucia Martin', 'correo': 'lucia.mail.com', 'telefono': '34622334455', 'dni_hash': '4cd77ee263185c9464ed631fc6a6c448a846178793344e04535ff42d7025710c', 'dni_ok': 'Y', 'dni_ko': 'N', 'telefono_ok': 'Y', 'telefono_ko': 'N', 'correo_ok': 'N', 'correo_ko': 'Y'}, {'id': None, 'nombre': 'Pedro Gomez', 'correo': None, 'telefono': '', 'dni_hash': 'a3bc66384897df1892eb85705c9020e2ef34dd576af8e1f09dabae2a2402bc8c', 'dni_ok': 'N', 'dni_ko': 'Y', 'telefono_ok': 'N', 'telefono_ko': 'Y', 'correo_ok': 'N', 'correo_ko': 'Y'}, {'id': None, 'nombre': None, 'correo': 'sin_nombre@example.com', 'telefono': '677889900', 'dni_hash': '0815c477565421a0dd857a1dbfcaaee25bf07c229953df85fd177e22af21ab8d', 'dni_ok': 'Y', 'dni_ko': 'N', 'telefono_ok': 'Y', 'telefono_ko': 'N', 'correo_ok': 'Y', 'correo_ko': 'N'})]
-(Background on this error at: https://sqlalche.me/e/14/gkpj); 194)
-[2026-05-07T14:09:20.960+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
-[2026-05-07T14:09:20.971+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 209)
+[2026-05-07T14:10:17.491+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-05-07T14:10:17.498+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
