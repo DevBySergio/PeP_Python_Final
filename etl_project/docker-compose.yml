@@ -1,15 +1,22 @@
-version: "3.8"
-
 x-airflow-common: &airflow-common
-  image: apache/airflow:2.8.1
+  build: .
+  image: etl-airflow:2.8.1
   environment: &airflow-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/${POSTGRES_DB}
     AIRFLOW__CORE__LOAD_EXAMPLES: "False"
     AIRFLOW__WEBSERVER__SECRET_KEY: "secret"
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+    POSTGRES_USER: ${POSTGRES_USER}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    POSTGRES_DB: ${POSTGRES_DB}
+    HASH_SALT: ${HASH_SALT}
+    PYTHONPATH: /opt/airflow
   volumes:
     - ./dags:/opt/airflow/dags
     - ./etl:/opt/airflow/etl
+    - ./db:/opt/airflow/db
     - ./data:/opt/airflow/data
     - ./logs:/opt/airflow/logs
 
@@ -27,12 +34,18 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   airflow-init:
     <<: *airflow-common
     container_name: airflow_init
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     command: >
       bash -c "
       airflow db migrate &&
@@ -49,8 +62,10 @@ services:
     <<: *airflow-common
     container_name: airflow_webserver
     depends_on:
-      - postgres
-      - airflow-init
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
     ports:
       - "8080:8080"
     command: webserver
@@ -59,8 +74,10 @@ services:
     <<: *airflow-common
     container_name: airflow_scheduler
     depends_on:
-      - postgres
-      - airflow-init
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
     command: scheduler
 
 volumes:

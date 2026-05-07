@@ -132,7 +132,7 @@ HASH_SALT=my_super_secret_salt
 Desde la raíz del proyecto:
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ---
@@ -153,6 +153,29 @@ Una vez levantado el entorno:
 2. Buscar el DAG: `etl_pipeline`
 3. Activarlo (toggle ON)
 4. Ejecutarlo manualmente o esperar a la ejecución programada (03:00 AM)
+
+Si ya habías levantado el proyecto antes y PostgreSQL conserva tablas con el esquema anterior, recrea el volumen:
+
+```bash
+docker compose down -v
+docker compose up --build
+```
+
+---
+
+### 5. Ejecución manual sin Airflow
+
+También puedes lanzar el pipeline directamente:
+
+```bash
+python run_pipeline.py
+```
+
+Si ejecutas el script fuera de Docker, define además:
+
+```bash
+export POSTGRES_HOST=localhost
+```
 
 ---
 

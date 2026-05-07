@@ -1,7 +1,8 @@
 import os
+
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
-from dotenv import load_dotenv
 
 # Cargar las variables de entorno desde el archivo .env
 load_dotenv()
@@ -14,7 +15,7 @@ def get_database_url() -> str:
     user = os.environ.get("POSTGRES_USER")
     password = os.environ.get("POSTGRES_PASSWORD")
     db_name = os.environ.get("POSTGRES_DB")
-    host = os.environ.get("POSTGRES_HOST", "localhost") # Cambiado a localhost para pruebas locales fuera de Docker
+    host = os.environ.get("POSTGRES_HOST", "postgres")
     port = os.environ.get("POSTGRES_PORT", "5432")
 
     # Validar que las variables críticas no sean None
