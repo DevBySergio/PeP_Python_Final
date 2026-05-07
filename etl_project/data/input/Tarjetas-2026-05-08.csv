@@ -1,0 +1,4 @@
+id_cliente;numero_tarjeta;cvv;fecha_caducidad
+10; 4111 1111 1111 1111 ;123;11/28
+11;;321;07/27
+12;1234abcd5678;cvx;

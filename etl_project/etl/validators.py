@@ -32,8 +32,8 @@ INTERACCIÓN:
 OUTPUT:
 - Booleanos + flags OK/KO
 """
-
 import re
+from typing import Tuple
 
 # Expresión regular para validar el formato del DNI:
 # - 8 dígitos seguidos de una letra (mayúscula o minúscula)
@@ -124,7 +124,7 @@ def validate_email(email: str) -> bool:
     return re.match(EMAIL_PATTERN, email) is not None
 
 
-def generate_flag_pair(is_valid: bool) -> tuple[str, str]:
+def generate_flag_pair(is_valid: bool) -> Tuple[str, str]:
     """
     Convierte un booleano en un par de flags tipo ETL.
 

@@ -1,0 +1,5 @@
+nombre;correo;telefono;dni_hash;dni_ok;dni_ko;telefono_ok;telefono_ko;correo_ok;correo_ko
+Juan Perez;juan.perez@mail.com;60012;7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0;N;Y;N;Y;Y;N
+Lucia Martin;lucia.mail.com;34622334455;4cd77ee263185c9464ed631fc6a6c448a846178793344e04535ff42d7025710c;Y;N;Y;N;N;Y
+Pedro Gomez;;;a3bc66384897df1892eb85705c9020e2ef34dd576af8e1f09dabae2a2402bc8c;N;Y;N;Y;N;Y
+;sin_nombre@example.com;677889900;0815c477565421a0dd857a1dbfcaaee25bf07c229953df85fd177e22af21ab8d;Y;N;Y;N;Y;N

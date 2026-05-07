@@ -1,0 +1,82 @@
+[2026-05-07T09:27:23.136+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.run_etl_pipeline manual__2026-05-07T09:27:22.457719+00:00 [queued]>
+[2026-05-07T09:27:23.139+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.run_etl_pipeline manual__2026-05-07T09:27:22.457719+00:00 [queued]>
+[2026-05-07T09:27:23.139+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-05-07T09:27:23.143+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_etl_pipeline> on 2026-05-07 09:27:22.457719+00:00
+[2026-05-07T09:27:23.144+0000] {standard_task_runner.py:60} INFO - Started process 245 to run task
+[2026-05-07T09:27:23.146+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'run_etl_pipeline', 'manual__2026-05-07T09:27:22.457719+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/etl_pipeline.py', '--cfg-path', '/tmp/tmpimq361_f']
+[2026-05-07T09:27:23.147+0000] {standard_task_runner.py:88} INFO - Job 9: Subtask run_etl_pipeline
+[2026-05-07T09:27:23.164+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline.run_etl_pipeline manual__2026-05-07T09:27:22.457719+00:00 [running]> on host ef3f5288bbb6
+[2026-05-07T09:27:23.193+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='run_etl_pipeline' AIRFLOW_CTX_EXECUTION_DATE='2026-05-07T09:27:22.457719+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-07T09:27:22.457719+00:00'
+[2026-05-07T09:27:23.194+0000] {pipeline.py:61} INFO - Iniciando pipeline ETL
+[2026-05-07T09:27:23.275+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1890, in _execute_context
+    self.dialect.do_executemany(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 982, in do_executemany
+    context._psycopg2_fetched_rows = xtras.execute_values(
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.NotNullViolation: null value in column "cod_cliente" of relation "clientes" violates not-null constraint
+DETAIL:  Failing row contains (null, Juan Perez, null, null, 7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0, juan.perez@mail.com, 60012, N, Y, N, Y, Y, N).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/etl/pipeline.py", line 75, in run_pipeline
+    load_clientes(result, engine)
+  File "/opt/airflow/etl/loader.py", line 35, in load_clientes
+    df.to_sql("clientes", engine, if_exists="append", index=False)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/generic.py", line 2878, in to_sql
+    return sql.to_sql(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 769, in to_sql
+    return pandas_sql.to_sql(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1920, in to_sql
+    total_inserted = sql_engine.insert_records(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1470, in insert_records
+    raise err
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1461, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1023, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 929, in _execute_insert
+    result = conn.execute(self.table.insert(), data)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1890, in _execute_context
+    self.dialect.do_executemany(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 982, in do_executemany
+    context._psycopg2_fetched_rows = xtras.execute_values(
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) null value in column "cod_cliente" of relation "clientes" violates not-null constraint
+DETAIL:  Failing row contains (null, Juan Perez, null, null, 7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0, juan.perez@mail.com, 60012, N, Y, N, Y, Y, N).
+
+[SQL: INSERT INTO clientes (nombre, correo, telefono, dni_hash, dni_ok, dni_ko, telefono_ok, telefono_ko, correo_ok, correo_ko) VALUES (%(nombre)s, %(correo)s, %(telefono)s, %(dni_hash)s, %(dni_ok)s, %(dni_ko)s, %(telefono_ok)s, %(telefono_ko)s, %(correo_ok)s, %(correo_ko)s)]
+[parameters: ({'nombre': 'Juan Perez', 'correo': 'juan.perez@mail.com', 'telefono': '60012', 'dni_hash': '7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0', 'dni_ok': 'N', 'dni_ko': 'Y', 'telefono_ok': 'N', 'telefono_ko': 'Y', 'correo_ok': 'Y', 'correo_ko': 'N'}, {'nombre': 'Lucia Martin', 'correo': 'lucia.mail.com', 'telefono': '34622334455', 'dni_hash': '4cd77ee263185c9464ed631fc6a6c448a846178793344e04535ff42d7025710c', 'dni_ok': 'Y', 'dni_ko': 'N', 'telefono_ok': 'Y', 'telefono_ko': 'N', 'correo_ok': 'N', 'correo_ko': 'Y'}, {'nombre': 'Pedro Gomez', 'correo': None, 'telefono': '', 'dni_hash': 'a3bc66384897df1892eb85705c9020e2ef34dd576af8e1f09dabae2a2402bc8c', 'dni_ok': 'N', 'dni_ko': 'Y', 'telefono_ok': 'N', 'telefono_ko': 'Y', 'correo_ok': 'N', 'correo_ko': 'Y'}, {'nombre': None, 'correo': 'sin_nombre@example.com', 'telefono': '677889900', 'dni_hash': '0815c477565421a0dd857a1dbfcaaee25bf07c229953df85fd177e22af21ab8d', 'dni_ok': 'Y', 'dni_ko': 'N', 'telefono_ok': 'Y', 'telefono_ko': 'N', 'correo_ok': 'Y', 'correo_ko': 'N'})]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[2026-05-07T09:27:23.280+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_pipeline, task_id=run_etl_pipeline, execution_date=20260507T092722, start_date=20260507T092723, end_date=20260507T092723
+[2026-05-07T09:27:23.285+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 9 for task run_etl_pipeline ((psycopg2.errors.NotNullViolation) null value in column "cod_cliente" of relation "clientes" violates not-null constraint
+DETAIL:  Failing row contains (null, Juan Perez, null, null, 7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0, juan.perez@mail.com, 60012, N, Y, N, Y, Y, N).
+
+[SQL: INSERT INTO clientes (nombre, correo, telefono, dni_hash, dni_ok, dni_ko, telefono_ok, telefono_ko, correo_ok, correo_ko) VALUES (%(nombre)s, %(correo)s, %(telefono)s, %(dni_hash)s, %(dni_ok)s, %(dni_ko)s, %(telefono_ok)s, %(telefono_ko)s, %(correo_ok)s, %(correo_ko)s)]
+[parameters: ({'nombre': 'Juan Perez', 'correo': 'juan.perez@mail.com', 'telefono': '60012', 'dni_hash': '7c310682158aef76019f7e5514ccd77760ed84f0d4f4e3c00bd8499798d8e1b0', 'dni_ok': 'N', 'dni_ko': 'Y', 'telefono_ok': 'N', 'telefono_ko': 'Y', 'correo_ok': 'Y', 'correo_ko': 'N'}, {'nombre': 'Lucia Martin', 'correo': 'lucia.mail.com', 'telefono': '34622334455', 'dni_hash': '4cd77ee263185c9464ed631fc6a6c448a846178793344e04535ff42d7025710c', 'dni_ok': 'Y', 'dni_ko': 'N', 'telefono_ok': 'Y', 'telefono_ko': 'N', 'correo_ok': 'N', 'correo_ko': 'Y'}, {'nombre': 'Pedro Gomez', 'correo': None, 'telefono': '', 'dni_hash': 'a3bc66384897df1892eb85705c9020e2ef34dd576af8e1f09dabae2a2402bc8c', 'dni_ok': 'N', 'dni_ko': 'Y', 'telefono_ok': 'N', 'telefono_ko': 'Y', 'correo_ok': 'N', 'correo_ko': 'Y'}, {'nombre': None, 'correo': 'sin_nombre@example.com', 'telefono': '677889900', 'dni_hash': '0815c477565421a0dd857a1dbfcaaee25bf07c229953df85fd177e22af21ab8d', 'dni_ok': 'Y', 'dni_ko': 'N', 'telefono_ok': 'Y', 'telefono_ko': 'N', 'correo_ok': 'Y', 'correo_ko': 'N'})]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 245)
+[2026-05-07T09:27:23.297+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-05-07T09:27:23.304+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
