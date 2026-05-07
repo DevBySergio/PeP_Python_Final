@@ -7,7 +7,7 @@ import sys
 from datetime import datetime
 
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.operators.python_operator import PythonOperator
 
 if "/opt/airflow" not in sys.path:
     sys.path.insert(0, "/opt/airflow")
