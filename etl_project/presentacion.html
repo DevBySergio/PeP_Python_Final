@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presentación Proyecto ETL</title>
+    <style>
+      :root {
+        --bg: #f4efe7;
+        --paper: rgba(255, 252, 247, 0.82);
+        --panel: rgba(255, 255, 255, 0.9);
+        --ink: #1f2a37;
+        --muted: #5f6b7a;
+        --accent: #c66a2b;
+        --accent-2: #1f6f78;
+        --line: rgba(31, 42, 55, 0.12);
+        --shadow: 0 24px 70px rgba(60, 52, 37, 0.16);
+        --radius: 24px;
+        --max: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(198, 106, 43, 0.18),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(31, 111, 120, 0.18),
+            transparent 32%
+          ),
+          linear-gradient(160deg, #f7f1e8 0%, #efe7db 45%, #ece8e1 100%);
+        color: var(--ink);
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      body {
+        padding: 28px;
+      }
+
+      .deck-shell {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+        padding: 14px 18px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 10px 30px rgba(74, 62, 46, 0.08);
+        position: sticky;
+        top: 16px;
+        z-index: 10;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        color: white;
+        border-radius: 14px;
+        background: linear-gradient(
+          135deg,
+          var(--accent),
+          #d08f36 55%,
+          var(--accent-2)
+        );
+        font-weight: 700;
+        box-shadow: 0 12px 28px rgba(198, 106, 43, 0.34);
+      }
+
+      .brand-text strong,
+      .brand-text span {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .brand-text strong {
+        font-size: 0.96rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .brand-text span {
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .progress-wrap {
+        width: 220px;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(31, 42, 55, 0.08);
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        transition: width 240ms ease;
+      }
+
+      .counter {
+        min-width: 54px;
+        text-align: center;
+        font-weight: 700;
+        color: var(--accent-2);
+      }
+
+      button {
+        border: 0;
+        cursor: pointer;
+        padding: 11px 15px;
+        border-radius: 999px;
+        background: #ffffff;
+        color: var(--ink);
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(33, 40, 48, 0.08);
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+      }
+
+      .slides {
+        position: relative;
+      }
+
+      .slide {
+        display: none;
+        min-height: calc(100vh - 150px);
+        padding: 48px;
+        border-radius: var(--radius);
+        background: var(--paper);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .slide.active {
+        display: block;
+        animation: fadeIn 260ms ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(198, 106, 43, 0.1);
+        color: var(--accent);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: clamp(2.6rem, 6vw, 5rem);
+        line-height: 0.95;
+        margin: 18px 0 18px;
+        letter-spacing: -0.05em;
+        max-width: 11ch;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        margin: 18px 0 20px;
+      }
+
+      h3 {
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+      }
+
+      p,
+      li {
+        font-size: 1.04rem;
+        line-height: 1.6;
+        color: var(--ink);
+      }
+
+      .lead {
+        font-size: 1.2rem;
+        max-width: 66ch;
+        color: #334154;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        display: grid;
+        gap: 18px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card,
+      .metric,
+      .codebox,
+      .timeline-item,
+      .arch-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 22px;
+        box-shadow: 0 10px 30px rgba(44, 47, 54, 0.05);
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 2.2rem;
+        margin-bottom: 6px;
+        color: var(--accent-2);
+        letter-spacing: -0.04em;
+      }
+
+      ul.clean {
+        padding-left: 20px;
+        margin: 0;
+      }
+
+      ul.clean li + li {
+        margin-top: 10px;
+      }
+
+      .architecture {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 14px;
+        align-items: stretch;
+        margin-top: 26px;
+      }
+
+      .arch-box {
+        min-height: 170px;
+        position: relative;
+      }
+
+      .arch-box::after {
+        content: "→";
+        position: absolute;
+        right: -11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--accent);
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      .arch-box:last-child::after {
+        display: none;
+      }
+
+      .image-frame {
+        margin-top: 28px;
+        padding: 18px;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.88),
+          rgba(248, 245, 240, 0.92)
+        );
+        box-shadow: 0 12px 30px rgba(44, 47, 54, 0.06);
+      }
+
+      .image-frame h3 {
+        margin-bottom: 12px;
+      }
+
+      .image-frame img {
+        display: block;
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        border-radius: 16px;
+        background: rgba(31, 42, 55, 0.03);
+        border: 1px solid rgba(31, 42, 55, 0.08);
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .pill {
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: rgba(31, 111, 120, 0.1);
+        color: var(--accent-2);
+        font-weight: 600;
+        font-size: 0.92rem;
+      }
+
+      .codebox pre {
+        margin: 0;
+        overflow: auto;
+        color: #132235;
+        font-size: 0.93rem;
+        line-height: 1.55;
+        font-family: Consolas, Monaco, "Courier New", monospace;
+      }
+
+      .split-hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 24px;
+        align-items: end;
+        min-height: 100%;
+      }
+
+      .hero-panel {
+        padding: 24px;
+        border-radius: 24px;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.7),
+          rgba(255, 255, 255, 0.96)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.75);
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .timeline-item span {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: var(--accent);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+
+      .note {
+        margin-top: 22px;
+        padding: 16px 18px;
+        border-left: 4px solid var(--accent);
+        background: rgba(198, 106, 43, 0.08);
+        border-radius: 12px;
+        color: #53463a;
+      }
+
+      .footer-tip {
+        position: absolute;
+        bottom: 28px;
+        right: 32px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .table-like {
+        display: grid;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .gantt {
+        margin-top: 24px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .gantt-row {
+        display: grid;
+        grid-template-columns: 2.2fr repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .gantt-row > div {
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.82);
+      }
+
+      .gantt-row.header > div {
+        font-weight: 700;
+        color: var(--accent-2);
+        background: rgba(31, 111, 120, 0.08);
+      }
+
+      .gantt-task {
+        font-weight: 600;
+      }
+
+      .gantt-cell {
+        text-align: center;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .gantt-cell.active {
+        color: white;
+        background: linear-gradient(
+          135deg,
+          var(--accent),
+          #d08f36 55%,
+          var(--accent-2)
+        );
+        border-color: transparent;
+        box-shadow: 0 10px 24px rgba(49, 80, 86, 0.18);
+      }
+
+      .table-row {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr 1.4fr;
+        gap: 12px;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+      }
+
+      .table-row.header {
+        font-weight: 700;
+        color: var(--accent-2);
+        background: rgba(31, 111, 120, 0.08);
+      }
+
+      .section-columns {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 22px;
+      }
+
+      .small {
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        body {
+          padding: 16px;
+        }
+        .topbar {
+          position: static;
+          border-radius: 24px;
+        }
+        .slide {
+          min-height: auto;
+          padding: 28px;
+        }
+        .split-hero,
+        .grid-2,
+        .grid-3,
+        .grid-4,
+        .timeline,
+        .section-columns,
+        .architecture,
+        .table-row,
+        .gantt-row {
+          grid-template-columns: 1fr;
+        }
+        .arch-box::after {
+          content: "↓";
+          right: auto;
+          left: 50%;
+          top: auto;
+          bottom: -18px;
+          transform: translateX(-50%);
+        }
+        .footer-tip {
+          position: static;
+          margin-top: 18px;
+        }
+        .progress-wrap {
+          width: 140px;
+        }
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          background: #fff;
+        }
+        .topbar {
+          display: none;
+        }
+        .slide {
+          display: block !important;
+          min-height: 100vh;
+          box-shadow: none;
+          border: 0;
+          border-radius: 0;
+          page-break-after: always;
+          background: #fff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck-shell">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-mark">ETL</div>
+          <div class="brand-text">
+            <strong>Proyecto ETL</strong>
+            <span>Presentación ejecutiva y técnica del repositorio</span>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="progress-wrap">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div class="counter" id="counter">1/12</div>
+          <button id="prevBtn" type="button">Anterior</button>
+          <button id="nextBtn" type="button">Siguiente</button>
+        </div>
+      </div>
+
+      <main class="slides" id="slides">
+        <section class="slide active">
+          <div class="split-hero">
+            <div>
+              <div class="eyebrow">Exposición de 10 minutos</div>
+              <h1>Pipeline ETL con Python, Airflow, PostgreSQL y Docker</h1>
+              <p class="lead">
+                Esta presentación resume el funcionamiento completo del
+                proyecto: objetivo, arquitectura, tecnologías, flujo ETL,
+                despliegue, seguridad, organización del código y propuesta de
+                valor.
+              </p>
+              <div class="pill-row">
+                <div class="pill">Python 3.11</div>
+                <div class="pill">Apache Airflow 2.8</div>
+                <div class="pill">PostgreSQL 15</div>
+                <div class="pill">Docker Compose</div>
+              </div>
+            </div>
+            <div class="hero-panel">
+              <div class="grid-2">
+                <div class="metric">
+                  <strong>2</strong>
+                  <span>tipos de fuente CSV procesadas</span>
+                </div>
+                <div class="metric">
+                  <strong>1</strong>
+                  <span>DAG diario coordinando toda la ejecución</span>
+                </div>
+                <div class="metric">
+                  <strong>3</strong>
+                  <span
+                    >capas principales: datos, procesamiento y
+                    orquestación</span
+                  >
+                </div>
+                <div class="metric">
+                  <strong>100%</strong>
+                  <span
+                    >de datos sensibles anonimizados antes de persistir</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-tip">
+            Usa flechas izquierda/derecha o los botones para navegar.
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">0. Equipo</div>
+          <h2>Tareas del equipo</h2>
+          <p class="lead">
+            Desglose de las tareas principales asignadas a cada miembro del
+            equipo.
+          </p>
+          <div class="grid-3">
+            <div class="card">
+              <h3>Participante 1</h3>
+              <p class="small">Juan Campos</p>
+              <ul class="clean">
+                <li>Diseño de la arquitectura general del proyecto.</li>
+                <li>Implementación de la extracción y lectura de CSV.</li>
+                <li>Documentación técnica y apoyo en pruebas.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Participante 2</h3>
+              <p class="small">Alberto Lebrero</p>
+              <ul class="clean">
+                <li>Desarrollo de transformaciones y limpieza de datos.</li>
+                <li>Validaciones de DNI, correo y teléfono.</li>
+                <li>Revisión de resultados y mejora de calidad del dato.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Participante 3</h3>
+              <p class="small">Sergio del Cerr0</p>
+              <ul class="clean">
+                <li>Despliegue con Docker y configuración de Airflow.</li>
+                <li>Conexión con PostgreSQL y carga de datos.</li>
+                <li>Preparación de la demo y defensa de la presentación.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">0.1 Planificación</div>
+          <h2>Diagrama de Gantt del proyecto</h2>
+          <p class="lead">
+            El proyecto se ejecutó en un ciclo de 4 semanas siguiendo una
+            organización incremental inspirada en Scrum: análisis inicial,
+            desarrollo por bloques, integración y cierre documental.
+          </p>
+          <div class="gantt">
+            <div class="gantt-row header">
+              <div>Fase / Tarea</div>
+              <div>Semana 1</div>
+              <div>Semana 2</div>
+              <div>Semana 3</div>
+              <div>Semana 4</div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-task">
+                Análisis: requisitos, diseño de BD y arquitectura Docker
+              </div>
+              <div class="gantt-cell active"></div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell"></div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-task">
+                Desarrollo extracción: filtrado Regex y carga en Pandas
+              </div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell active"></div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell"></div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-task">
+                Desarrollo transformación: limpieza y anonimización
+              </div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell active"></div>
+              <div class="gantt-cell"></div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-task">
+                Integración: carga en DB, Airflow y pruebas finales
+              </div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell active"></div>
+              <div class="gantt-cell"></div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-task">
+                Cierre: documentación, README y preparación de memoria
+              </div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell"></div>
+              <div class="gantt-cell active"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">1. Contexto</div>
+          <h2>Qué problema resuelve el proyecto</h2>
+          <div class="section-columns">
+            <div class="card">
+              <h3>Objetivo del sistema</h3>
+              <p>
+                Automatizar el procesamiento de ficheros de clientes y tarjetas,
+                aplicar limpieza y validación de calidad, proteger la
+                información sensible y dejar los datos listos para consulta en
+                PostgreSQL y para auditoría en CSV de salida.
+              </p>
+              <p class="small">
+                El pipeline acepta ficheros con patrón de nombre controlado y
+                procesa solo los que cumplen la convención esperada.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Valor de negocio</h3>
+              <ul class="clean">
+                <li>
+                  Reduce trabajo manual y errores operativos en la carga de
+                  datos.
+                </li>
+                <li>Estandariza la validación de DNI, teléfono y correo.</li>
+                <li>
+                  Protege datos personales y financieros mediante hashing con
+                  SALT.
+                </li>
+                <li>
+                  Permite ejecución programada diaria y repetible desde Airflow.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">2. Arquitectura</div>
+          <h2>Arquitectura funcional de extremo a extremo</h2>
+          <p class="lead">
+            El diseño separa claramente entrada de datos, lógica de
+            transformación, persistencia y orquestación, lo que hace el proyecto
+            más mantenible y fácil de escalar.
+          </p>
+          <div class="architecture">
+            <div class="arch-box">
+              <h3>1. Entrada</h3>
+              <p>
+                CSV en <code>data/input</code> con nombres como
+                <code>Clientes-YYYY-MM-DD.csv</code> y
+                <code>Tarjetas-YYYY-MM-DD.csv</code>.
+              </p>
+            </div>
+            <div class="arch-box">
+              <h3>2. Extract</h3>
+              <p>
+                El módulo <code>etl/extractor.py</code> descubre archivos
+                válidos y los carga con <code>pandas</code>.
+              </p>
+            </div>
+            <div class="arch-box">
+              <h3>3. Transform</h3>
+              <p>
+                Se limpian campos, se validan reglas de negocio y se anonimizan
+                valores sensibles.
+              </p>
+            </div>
+            <div class="arch-box">
+              <h3>4. Load</h3>
+              <p>
+                Los datos depurados se guardan en CSV de salida y se insertan en
+                tablas PostgreSQL.
+              </p>
+            </div>
+            <div class="arch-box">
+              <h3>5. Orquestación</h3>
+              <p>
+                Airflow ejecuta el proceso cada día a las 03:00 y permite
+                trazabilidad por logs.
+              </p>
+            </div>
+          </div>
+          <div class="image-frame">
+            <h3>Diagrama visual del flujo</h3>
+            <img
+              src="flujo.png"
+              alt="Diagrama del flujo completo del proyecto ETL"
+            />
+            <p class="small" style="margin-top: 12px">
+              Esquema visual de la arquitectura o del flujo ETL.
+            </p>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">3. Stack</div>
+          <h2>Tecnologías utilizadas y por qué se eligieron</h2>
+          <div class="grid-4">
+            <div class="card">
+              <h3>Python 3.11</h3>
+              <p>
+                Lenguaje principal del ETL por su productividad, claridad y
+                ecosistema de ingeniería de datos.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Pandas</h3>
+              <p>
+                Permite leer CSV, transformar DataFrames y exportar resultados
+                de forma muy eficiente.
+              </p>
+            </div>
+            <div class="card">
+              <h3>SQLAlchemy + psycopg2</h3>
+              <p>
+                Gestionan la conexión a PostgreSQL y facilitan la carga de
+                datos.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Apache Airflow</h3>
+              <p>
+                Orquesta la ejecución diaria, centraliza el control y deja
+                visible el historial del pipeline.
+              </p>
+            </div>
+            <div class="card">
+              <h3>PostgreSQL 15</h3>
+              <p>
+                Base de datos relacional robusta, adecuada para persistir el
+                resultado estructurado del ETL.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Docker y Compose</h3>
+              <p>
+                Garantizan un despliegue reproducible y sencillo, con todos los
+                servicios del entorno coordinados.
+              </p>
+            </div>
+            <div class="card">
+              <h3>.env</h3>
+              <p>
+                Centraliza configuración sensible y evita hardcodear
+                credenciales o SALTs en el código.
+              </p>
+            </div>
+            <div class="card">
+              <h3>SHA-256 + SALT</h3>
+              <p>
+                Se usa para anonimización irreversible de DNI, tarjeta y CVV
+                antes de su almacenamiento.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">4. Código</div>
+          <h2>Cómo está organizado el código del proyecto</h2>
+          <div class="table-like">
+            <div class="table-row header">
+              <div>Elemento</div>
+              <div>Archivo</div>
+              <div>Responsabilidad</div>
+            </div>
+            <div class="table-row">
+              <div>Ejecución manual</div>
+              <div><code>run_pipeline.py</code></div>
+              <div>
+                Punto de entrada simple que llama a <code>run_pipeline()</code>.
+              </div>
+            </div>
+            <div class="table-row">
+              <div>Orquestación</div>
+              <div><code>dags/etl_pipeline.py</code></div>
+              <div>
+                Define el DAG diario de Airflow y la tarea Python que ejecuta el
+                ETL.
+              </div>
+            </div>
+            <div class="table-row">
+              <div>Pipeline central</div>
+              <div><code>etl/pipeline.py</code></div>
+              <div>
+                Coordina extracción, transformación, guardado de CSV y carga en
+                base de datos.
+              </div>
+            </div>
+            <div class="table-row">
+              <div>Extracción</div>
+              <div><code>etl/extractor.py</code></div>
+              <div>
+                Filtra archivos por patrón y los carga como DataFrames con
+                separador <code>;</code>.
+              </div>
+            </div>
+            <div class="table-row">
+              <div>Limpieza y validación</div>
+              <div>
+                <code>etl/cleaning.py</code>, <code>etl/validators.py</code>
+              </div>
+              <div>
+                Normaliza formatos y comprueba reglas de negocio como DNI,
+                teléfono y email.
+              </div>
+            </div>
+            <div class="table-row">
+              <div>Anonimización y carga</div>
+              <div>
+                <code>etl/anonymization.py</code>, <code>etl/loader.py</code>
+              </div>
+              <div>
+                Hashea datos sensibles, adapta columnas e inserta filas en
+                PostgreSQL.
+              </div>
+            </div>
+            <div class="table-row">
+              <div>Base de datos</div>
+              <div><code>db/connection.py</code>, <code>db/init.sql</code></div>
+              <div>
+                Construye la conexión y crea las tablas base del proyecto.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">5. Flujo ETL</div>
+          <h2>Qué ocurre exactamente durante el procesamiento</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span>Extract</span>
+              <h3>Descubrimiento y lectura</h3>
+              <p>
+                Se listan los ficheros de entrada y solo se aceptan nombres con
+                formato fechado correcto.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span>Transform</span>
+              <h3>Limpieza de datos</h3>
+              <p>
+                Se eliminan espacios, se normalizan nombres y correos y se
+                limpia el teléfono dejando solo dígitos.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span>Validate</span>
+              <h3>Reglas de calidad</h3>
+              <p>
+                El DNI se valida con algoritmo real de letra, y además se
+                comprueban correo y teléfono.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span>Flagging</span>
+              <h3>Trazabilidad del dato</h3>
+              <p>
+                Cada validación genera pares de banderas <code>ok/ko</code> con
+                valores <code>Y/N</code>.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span>Protect</span>
+              <h3>Anonimización</h3>
+              <p>
+                Los campos sensibles no se guardan en claro: se convierten a
+                hash SHA-256 concatenando un SALT.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span>Load</span>
+              <h3>Persistencia</h3>
+              <p>
+                Los resultados se exportan a <code>data/output</code> y se
+                cargan en tablas PostgreSQL.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">6. Seguridad</div>
+          <h2>Protección de datos y control de calidad</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Anonimización aplicada</h3>
+              <ul class="clean">
+                <li>
+                  <code>dni</code> se transforma en <code>dni_hash</code>.
+                </li>
+                <li>
+                  <code>numero_tarjeta</code> se transforma en
+                  <code>numero_tarjeta_hash</code>.
+                </li>
+                <li>
+                  <code>cvv</code> se transforma en <code>cvv_hash</code>.
+                </li>
+                <li>
+                  La SALT se obtiene desde variables de entorno, no desde código
+                  hardcodeado.
+                </li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Garantías del diseño</h3>
+              <ul class="clean">
+                <li>
+                  Los CSV de salida ya contienen la versión protegida de los
+                  datos críticos.
+                </li>
+                <li>
+                  Se preserva utilidad analítica sin exponer información
+                  identificable.
+                </li>
+                <li>
+                  El uso de flags facilita auditoría y revisión de calidad por
+                  registro.
+                </li>
+                <li>
+                  La conexión a base de datos también se parametriza con
+                  entorno.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="codebox" style="margin-top: 20px">
+            <pre>
+def hash_value(value: str) -&gt; str:
+    raw = f"{HASH_SALT}{value}".encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()</pre
+            >
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">7. Despliegue</div>
+          <h2>Cómo se despliega y ejecuta el sistema</h2>
+          <div class="grid-3">
+            <div class="card">
+              <h3>Contenedores</h3>
+              <p>
+                El proyecto levanta PostgreSQL, un paso de inicialización de
+                Airflow, el webserver y el scheduler.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Imagen base</h3>
+              <p>
+                El <code>Dockerfile</code> extiende
+                <code>apache/airflow:2.8.1</code> e instala dependencias del
+                proyecto.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Variables</h3>
+              <p>
+                Compose inyecta credenciales de PostgreSQL, host, puerto y
+                <code>HASH_SALT</code> al entorno.
+              </p>
+            </div>
+          </div>
+          <div class="codebox" style="margin-top: 20px">
+            <pre>
+docker compose up --build -d
+
+Airflow UI:
+http://localhost:8080
+usuario: admin
+password: admin</pre
+            >
+          </div>
+          <div class="note">
+            La contenerización hace que la demo sea reproducible, minimiza
+            diferencias entre equipos y simplifica el arranque del entorno
+            completo.
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">8. Operación</div>
+          <h2>Qué se puede mostrar en una demo real</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Secuencia recomendada de demostración</h3>
+              <ol class="clean">
+                <li>Mostrar los CSV en <code>data/input</code>.</li>
+                <li>
+                  Abrir Airflow y localizar el DAG <code>etl_pipeline</code>.
+                </li>
+                <li>
+                  Lanzar un <code>Manual Run</code> o explicar la programación
+                  diaria a las 03:00.
+                </li>
+                <li>Enseñar los CSV generados en <code>data/output</code>.</li>
+                <li>
+                  Consultar las tablas <code>clientes</code> y
+                  <code>tarjetas</code> en PostgreSQL.
+                </li>
+              </ol>
+            </div>
+            <div class="card">
+              <h3>Datos de la demo incluida</h3>
+              <ul class="clean">
+                <li>2 archivos de entrada válidos en la carpeta de demo.</li>
+                <li>3 registros de clientes procesados.</li>
+                <li>3 registros de tarjetas procesados.</li>
+                <li>
+                  Todos los datos sensibles aparecen ya anonimizados en salida.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">9. Diseño técnico</div>
+          <h2>Fortalezas, decisiones y posibles mejoras</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Fortalezas actuales</h3>
+              <ul class="clean">
+                <li>Separación modular por responsabilidades.</li>
+                <li>
+                  Pipeline reutilizable tanto manualmente como desde Airflow.
+                </li>
+                <li>Esquema de datos claro y fácil de extender.</li>
+                <li>
+                  Protección de datos integrada en la propia transformación.
+                </li>
+                <li>Entorno reproducible gracias a Docker Compose.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Mejoras futuras razonables</h3>
+              <ul class="clean">
+                <li>Tests automatizados unitarios y de integración.</li>
+                <li>
+                  Control más estricto de duplicados y versionado de cargas.
+                </li>
+                <li>Métricas de calidad y reporting en Airflow.</li>
+                <li>Manejo avanzado de errores y alertas operativas.</li>
+                <li>
+                  Posible evolución a almacenamiento cloud o pipeline
+                  incremental.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">10. Cierre</div>
+          <h2>Conclusión</h2>
+          <div class="card">
+            <p>
+              El proyecto demuestra un flujo ETL completo y profesional:
+              procesamiento estructurado, transformación con reglas de negocio,
+              anonimización de datos sensibles, carga automatizada y despliegue
+              reproducible en contenedores.
+            </p>
+            <p>
+              Más allá de ser una práctica técnica, enseña cómo diseñar una
+              solución de datos ordenada, segura y preparada para operar de
+              forma periódica.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const counter = document.getElementById("counter");
+      const progressBar = document.getElementById("progressBar");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      let current = 0;
+
+      function updateSlide(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === current);
+        });
+        counter.textContent = `${current + 1}/${slides.length}`;
+        progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      prevBtn.addEventListener("click", () => updateSlide(current - 1));
+      nextBtn.addEventListener("click", () => updateSlide(current + 1));
+
+      document.addEventListener("keydown", (event) => {
+        if (
+          event.key === "ArrowRight" ||
+          event.key === "PageDown" ||
+          event.key === " "
+        ) {
+          event.preventDefault();
+          updateSlide(current + 1);
+        }
+        if (event.key === "ArrowLeft" || event.key === "PageUp") {
+          event.preventDefault();
+          updateSlide(current - 1);
+        }
+        if (event.key === "Home") {
+          updateSlide(0);
+        }
+        if (event.key === "End") {
+          updateSlide(slides.length - 1);
+        }
+      });
+
+      updateSlide(0);
+    </script>
+  </body>
+</html>
