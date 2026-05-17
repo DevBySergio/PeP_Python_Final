@@ -720,7 +720,7 @@
           <div class="progress-wrap">
             <div class="progress-bar" id="progressBar"></div>
           </div>
-          <div class="counter" id="counter">1/12</div>
+          <div class="counter" id="counter">1/13</div>
           <button id="prevBtn" type="button">Anterior</button>
           <button id="nextBtn" type="button">Siguiente</button>
         </div>
@@ -804,7 +804,7 @@
             </div>
             <div class="card">
               <h3>Participante 3</h3>
-              <p class="small">Sergio del Cerr0</p>
+              <p class="small">Sergio del Cerro</p>
               <ul class="clean">
                 <li>Despliegue con Docker y configuración de Airflow.</li>
                 <li>Conexión con PostgreSQL y carga de datos.</li>
@@ -1474,7 +1474,57 @@ password: admin</pre
         </section>
 
         <section class="slide">
-          <div class="eyebrow">10. Cierre</div>
+          <div class="eyebrow">10. Incidencias</div>
+          <h2>Fallos y como los hemos afrontado</h2>
+          <div class="grid-3">
+            <div class="card">
+              <h3>Curva de aprendizaje con Docker</h3>
+              <p>
+                Docker era una tecnología nueva para parte del equipo. Los
+                principales bloqueos estuvieron en entender contenedores,
+                volúmenes, redes y el papel de cada servicio dentro de
+                <code>docker-compose</code>.
+              </p>
+              <p class="small">
+                Cómo se afrontó: reparto de tareas, pruebas iterativas de
+                arranque, revisión conjunta del flujo de servicios y
+                estandarización del entorno para que todos trabajaran sobre la
+                misma base.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Conexión a PostgreSQL e interfaz de consulta</h3>
+              <p>
+                Otro punto sensible fue validar correctamente la conexión a la
+                base de datos y disponer de una forma clara de inspeccionar las
+                tablas cargadas desde el ETL.
+              </p>
+              <p class="small">
+                Cómo se afrontó: comprobación de credenciales y puertos,
+                verificación desde terminal con <code>psql</code> y revisión de
+                las tablas generadas tras cada ejecución para confirmar que la
+                carga era correcta.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Compatibilidad Mac y Windows</h3>
+              <p>
+                El proyecto se desarrolló en entornos distintos, lo que generó
+                diferencias en rutas, comportamiento de Docker Desktop y manejo
+                de ficheros entre sistemas operativos.
+              </p>
+              <p class="small">
+                Cómo se afrontó: uso de Docker como capa común de ejecución,
+                normalización de la estructura del proyecto y validación cruzada
+                para asegurar que el arranque y la demo funcionaran en ambos
+                entornos.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">11. Cierre</div>
           <h2>Conclusión</h2>
           <div class="card">
             <p>
