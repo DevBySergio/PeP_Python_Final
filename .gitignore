@@ -1,0 +1,27 @@
+# Entorno local
+.env
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Sistema y editores
+.DS_Store
+.vscode/
+.idea/
+
+# Docker y Airflow generados en local
+logs/
+airflow.cfg
+airflow.db
+webserver_config.py
+
+# Datos generados por el pipeline
+etl_project/data/output/

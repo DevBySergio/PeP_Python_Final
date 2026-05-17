@@ -163,7 +163,19 @@ docker compose up --build
 
 ---
 
-### 5. Ejecución manual sin Airflow
+### 5. Ejecución manual sin Airflow y sin Python local
+
+El proyecto incluye un servicio Docker para ejecutar el pipeline manualmente sin instalar Python en el equipo:
+
+```bash
+docker compose run --rm etl-runner
+```
+
+Este comando usa la misma imagen Docker del proyecto, con Python y las dependencias de `requirements.txt` ya instaladas. PostgreSQL se levanta automáticamente si no está iniciado.
+
+---
+
+### 6. Ejecución manual con Python local
 
 También puedes lanzar el pipeline directamente:
 

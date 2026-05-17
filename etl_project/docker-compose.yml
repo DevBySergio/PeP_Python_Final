@@ -19,6 +19,7 @@ x-airflow-common: &airflow-common
     - ./db:/opt/airflow/db
     - ./data:/opt/airflow/data
     - ./logs:/opt/airflow/logs
+    - ./run_pipeline.py:/opt/airflow/run_pipeline.py
 
 services:
   postgres:
@@ -79,6 +80,16 @@ services:
       airflow-init:
         condition: service_completed_successfully
     command: scheduler
+
+  etl-runner:
+    <<: *airflow-common
+    container_name: etl_runner
+    profiles:
+      - manual
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: python /opt/airflow/run_pipeline.py
 
 volumes:
   postgres_data:
